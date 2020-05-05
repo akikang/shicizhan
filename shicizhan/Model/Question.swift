@@ -12,9 +12,9 @@ class Question{
     
     var questionText:String
     var answer:[String]
-    var correctAnswer:String
+    var correctAnswer:Int
    
-    init(text:String,answerArray:[String],theAnswer:String) {
+    init(text:String,answerArray:[String],theAnswer:Int) {
         questionText = text
         answer = answerArray
         correctAnswer = theAnswer
