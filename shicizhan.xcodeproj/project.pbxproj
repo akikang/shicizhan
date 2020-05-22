@@ -14,6 +14,8 @@
 		74AF90E6246140D50063FD5C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 74AF90E5246140D50063FD5C /* Assets.xcassets */; };
 		74AF90E9246140D50063FD5C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74AF90E7246140D50063FD5C /* LaunchScreen.storyboard */; };
 		74AF90F52461446D0063FD5C /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74AF90F42461446D0063FD5C /* Question.swift */; };
+		74D70EA824777928009CF59B /* note2.wav in Resources */ = {isa = PBXBuildFile; fileRef = 74D70EA724777928009CF59B /* note2.wav */; };
+		74D70EAA24777939009CF59B /* note1.wav in Resources */ = {isa = PBXBuildFile; fileRef = 74D70EA924777939009CF59B /* note1.wav */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,8 @@
 		74AF90E8246140D50063FD5C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		74AF90EA246140D50063FD5C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		74AF90F42461446D0063FD5C /* Question.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
+		74D70EA724777928009CF59B /* note2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = note2.wav; path = ../shicizhan/note2.wav; sourceTree = "<group>"; };
+		74D70EA924777939009CF59B /* note1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = note1.wav; path = ../shicizhan/note1.wav; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +62,7 @@
 		74AF90DB246140CF0063FD5C /* shicizhan */ = {
 			isa = PBXGroup;
 			children = (
+				74D70EAB24777950009CF59B /* Sound FIles */,
 				74AF90F0246143810063FD5C /* Controller */,
 				74AF90F32461440A0063FD5C /* Supporting Files */,
 				74AF90DE246140CF0063FD5C /* SceneDelegate.swift */,
@@ -100,6 +105,15 @@
 			children = (
 			);
 			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		74D70EAB24777950009CF59B /* Sound FIles */ = {
+			isa = PBXGroup;
+			children = (
+				74D70EA724777928009CF59B /* note2.wav */,
+				74D70EA924777939009CF59B /* note1.wav */,
+			);
+			path = "Sound FIles";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -161,7 +175,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				74AF90E9246140D50063FD5C /* LaunchScreen.storyboard in Resources */,
+				74D70EA824777928009CF59B /* note2.wav in Resources */,
 				74AF90E6246140D50063FD5C /* Assets.xcassets in Resources */,
+				74D70EAA24777939009CF59B /* note1.wav in Resources */,
 				74AF90E4246140CF0063FD5C /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -7,6 +7,8 @@
 //
 
 import UIKit
+//引入视频音频基础套餐
+import AVFoundation
 
 class ViewController: UIViewController {
     
@@ -22,7 +24,9 @@ class ViewController: UIViewController {
         Question(text:"《九月九日忆山东兄弟》的作者是谁？",answerArray:["李白","杜甫","白居易","王维"],theAnswer:4),
         Question(text:"春风又_江南岸？",answerArray:["到","满","绿","过"],theAnswer:3)
     ]
-
+    var player:AVAudioPlayer!//创建一个播放器（类似于CD机）
+    let sounds = ["note1","note2"]//全局变量
+    
     @IBOutlet weak var indexLabel: UILabel!
     @IBOutlet weak var questionLabel: UILabel!
     @IBOutlet weak var answer01: UIButton!
@@ -46,16 +50,29 @@ class ViewController: UIViewController {
     }
 
     @IBAction func answerPressed(_ sender: UIButton){
-        print(sender.tag)
-        print(questions[0].correctAnswer)
         let rightAnswer = questions[0].correctAnswer
         
         if sender.tag == rightAnswer{
             print("回答正确")
+            play(tag:1)//调用函数
         }else{
             print("回答错误")
+            play(tag:2)//调用函数
         }
         
     }
+    
+    //创建一个发出声音的功能函数
+      func play(tag: Int){
+          //找到音频文件（类似于拿出一张CD光盘）-局部变量
+          let url = Bundle.main.url(forResource: sounds[tag-1], withExtension: "wav")
+          
+          do{
+              player = try AVAudioPlayer(contentsOf: url!)//在CD机里面放入CD光盘
+              player.play()//按下播放按钮
+          }catch{
+              print(error)//放入的CD光盘可能有损坏导致CD机读不出来，我们需要用docatch来捕捉可能的错误，防止App闪退
+          }
+      }
 }
 
