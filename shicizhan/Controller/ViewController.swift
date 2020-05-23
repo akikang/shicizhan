@@ -26,6 +26,8 @@ class ViewController: UIViewController {
     ]
     var player:AVAudioPlayer!//创建一个播放器（类似于CD机）
     let sounds = ["note1","note2"]//全局变量
+    var rightAnswer:Int! //正确答案
+    var questionNum = 0
     
     @IBOutlet weak var indexLabel: UILabel!
     @IBOutlet weak var questionLabel: UILabel!
@@ -40,18 +42,11 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        questionLabel.text = questions[0].questionText
-        
-        answer01.setTitle(questions[0].answer[0], for: .normal)
-        answer02.setTitle(questions[0].answer[1], for: .normal)
-        answer03.setTitle(questions[0].answer[2], for: .normal)
-        answer04.setTitle(questions[0].answer[3], for: .normal)
+        setQuestion(index:questionNum)
     }
 
     @IBAction func answerPressed(_ sender: UIButton){
-        let rightAnswer = questions[0].correctAnswer
-        
+      
         if sender.tag == rightAnswer{
             print("回答正确")
             play(tag:1)//调用函数
@@ -60,19 +55,45 @@ class ViewController: UIViewController {
             play(tag:2)//调用函数
         }
         
+        questionNum = questionNum + 1
+        if(questionNum >= 10){
+            backToBegin()
+        }else{
+            setQuestion(index:questionNum)
+        }
+    }
+    
+    //回答完，显示弹框，回到第一个问题
+    func backToBegin(){
+        questionNum = 0
+        let alert = UIAlertController(title: "极好", message: "已完成所有题目", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: NSLocalizedString("再次做题", comment: "Default action"), style: .default, handler: { _ in
+            self.setQuestion(index:0)
+        }))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    //题目和答案内容赋值
+    func setQuestion(index:Int){
+        questionLabel.text = questions[index].questionText
+        rightAnswer = questions[index].correctAnswer
+        answer01.setTitle(questions[index].answer[0], for: .normal)
+        answer02.setTitle(questions[index].answer[1], for: .normal)
+        answer03.setTitle(questions[index].answer[2], for: .normal)
+        answer04.setTitle(questions[index].answer[3], for: .normal)
     }
     
     //创建一个发出声音的功能函数
-      func play(tag: Int){
-          //找到音频文件（类似于拿出一张CD光盘）-局部变量
-          let url = Bundle.main.url(forResource: sounds[tag-1], withExtension: "wav")
-          
-          do{
-              player = try AVAudioPlayer(contentsOf: url!)//在CD机里面放入CD光盘
-              player.play()//按下播放按钮
-          }catch{
-              print(error)//放入的CD光盘可能有损坏导致CD机读不出来，我们需要用docatch来捕捉可能的错误，防止App闪退
-          }
+    func play(tag: Int){
+      //找到音频文件（类似于拿出一张CD光盘）-局部变量
+      let url = Bundle.main.url(forResource: sounds[tag-1], withExtension: "wav")
+      
+      do{
+          player = try AVAudioPlayer(contentsOf: url!)//在CD机里面放入CD光盘
+          player.play()//按下播放按钮
+      }catch{
+          print(error)//放入的CD光盘可能有损坏导致CD机读不出来，我们需要用docatch来捕捉可能的错误，防止App闪退
       }
+    }
 }
 
