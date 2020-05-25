@@ -27,7 +27,8 @@ class ViewController: UIViewController {
     var player:AVAudioPlayer!//创建一个播放器（类似于CD机）
     let sounds = ["note1","note2"]//全局变量
     var rightAnswer:Int! //正确答案
-    var questionNum = 0
+    var questionNum = 0 //问题编号
+    var score = 0 //得分
     
     @IBOutlet weak var indexLabel: UILabel!
     @IBOutlet weak var questionLabel: UILabel!
@@ -49,18 +50,29 @@ class ViewController: UIViewController {
       
         if sender.tag == rightAnswer{
             print("回答正确")
-            play(tag:1)//调用函数
+            addScore() //加分
+            play(tag:1)//放音效
+           
         }else{
             print("回答错误")
-            play(tag:2)//调用函数
+            play(tag:2)//放音效
         }
-        
+       
         questionNum = questionNum + 1
+        progressLabel.text = "\(questionNum+1)"
+        progressBar.frame.size.width = (view.frame.width / 10) * CGFloat(questionNum+1)
+        
         if(questionNum >= 10){
             backToBegin()
         }else{
             setQuestion(index:questionNum)
         }
+    }
+    //加分
+    func addScore(){
+        score += 10
+        scoreLabel.text = "\(score)"
+        print("\(score)")
     }
     
     //回答完，显示弹框，回到第一个问题
